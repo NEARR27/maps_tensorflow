@@ -26,8 +26,8 @@ metadata:
   name: {model_name}-service
 spec:
   ports:
-  - port: 80
-    targetPort: 80
+  - port: 8501
+    targetPort: 8501
   selector:
     app: {model_name}-server
   type: LoadBalancer
