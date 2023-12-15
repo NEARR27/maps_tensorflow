@@ -64,6 +64,12 @@ jobs:
 
       - name: update sha in k8
         run: sed -i 's/{github.sha}/${{ github.sha }}/g' manifests/linear_model_k8s.yaml
+      - name: Install kubectl
+        run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+      
       - name: Apply ConfigMap
         run: kubectl apply -f config/nginx-configmap.yaml
 
