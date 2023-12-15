@@ -64,6 +64,9 @@ jobs:
 
       - name: update sha in k8
         run: sed -i 's/{github.sha}/${{ github.sha }}/g' manifests/linear_model_k8s.yaml
+      - name: Apply ConfigMap
+        run: kubectl apply -f config/nginx-configmap.yaml
+
 
       - name: list  
         run: cat manifests/linear_model_k8s.yaml
@@ -71,6 +74,7 @@ jobs:
       - uses: okteto/context@2.7.0
         with:
           token: ${{secrets.OKTETO_TOKEN }}
+      
           
       - name: Deploy and Wait
         uses: okteto/actions/deploy@v1
