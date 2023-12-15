@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-SERVER_URL = 'http://localhost:8501/v1/models/custom-model:predict'
+SERVER_URL = 'https://custom-model-service-nearr27.cloud.okteto.net/v1/models/custom-model:predict'
 
 def get_predictions(inputs):
     predict_request = {'instances': inputs}
