@@ -17,20 +17,6 @@ spec:
         image: docker.io/{docker_user}/tensorflow-{model_name}:{github.sha}
         ports:
         - containerPort: 8501
-
-      - name: nginx-container
-        image: nginx:alpine
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - name: nginx-config-volume
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
-
-      volumes:
-      - name: nginx-config-volume
-        configMap:
-          name: nginx-config
 ---
 apiVersion: v1
 kind: Service
