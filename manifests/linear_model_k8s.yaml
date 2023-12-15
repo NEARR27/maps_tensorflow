@@ -19,9 +19,18 @@ spec:
         - containerPort: 8501
 
       - name: nginx-container
-        image: docker.io/{docker_user}/nginx-cors:{version}
+        image: nginx:alpine
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-config-volume
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+
+      volumes:
+      - name: nginx-config-volume
+        configMap:
+          name: nginx-config
 ---
 apiVersion: v1
 kind: Service
